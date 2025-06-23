@@ -25,7 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { submitOrder } from "@/app/actions";
 import { orderSchema, type OrderSchema, type Product } from "@/lib/types";
-import { Loader2, User, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
+import { Loader2, User, Mail, Phone, MapPin, MessageSquare, Globe } from "lucide-react";
 
 interface OrderModalProps {
   product: Product | null;
@@ -39,10 +39,13 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
   const form = useForm<OrderSchema>({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone: "",
+      region: "",
       city: "",
+      address: "",
       message: "",
       productName: "",
     },
@@ -51,10 +54,13 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
   useEffect(() => {
     if (product) {
       form.reset({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
+        region: "",
         city: "",
+        address: "",
         message: "",
         productName: product.name,
       });
@@ -92,18 +98,34 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form id="contactForm" action="https://formspree.io/f/xldgyywr" method="POST" className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="name"
+                name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>First Name</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="John Doe" {...field} className="pl-10"/>
+                        <Input placeholder="" {...field} className="pl-10"/>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="Doe" {...field} className="pl-10"/>
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -119,7 +141,7 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                      <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="you@example.com" {...field} className="pl-10"/>
+                        <Input placeholder="someone@gmail.com" {...field} className="pl-10"/>
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -135,7 +157,23 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                     <FormControl>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="(123) 456-7890" {...field} className="pl-10"/>
+                        <Input placeholder="0678989828" {...field} className="pl-10"/>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="region"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Region</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input placeholder="fes-Meknes" {...field} className="pl-10"/>
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -151,7 +189,7 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                     <FormControl>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="New York" {...field} className="pl-10"/>
+                        <Input placeholder="Fes" {...field} className="pl-10"/>
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -159,6 +197,26 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 )}
               />
             </div>
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address</FormLabel>
+                  <FormControl>
+                     <div className="relative">
+                        <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Textarea
+                          placeholder="fes-meknes,fes,i9amat 87"
+                          {...field}
+                          className="pl-10"
+                        />
+                      </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="message"
