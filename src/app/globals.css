@@ -70,3 +70,30 @@ body {
     @apply bg-background text-foreground;
   }
 }
+<<<<<<< HEAD
+=======
+
+@property --glass-refraction {
+  syntax: '<number>';
+  initial-value: 1.5;
+  inherits: false;
+}
+
+@property --glass-darkness {
+  syntax: '<number>';
+  initial-value: 0.07;
+  inherits: false;
+}
+
+@keyframes gradient {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+>>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)

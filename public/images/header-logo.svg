@@ -1,0 +1,12 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="80" rx="10" fill="url(#gradient)" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="Arial" font-weight="bold" font-size="36">ZOLDYCK</text>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="200" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ee7752" />
+      <stop offset="33%" stop-color="#e73c7e" />
+      <stop offset="66%" stop-color="#23a6d5" />
+      <stop offset="100%" stop-color="#23d5ab" />
+    </linearGradient>
+  </defs>
+</svg>
