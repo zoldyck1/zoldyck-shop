@@ -1,10 +1,6 @@
 "use client";
 
-<<<<<<< HEAD
-import { useEffect, useState } from "react";
-=======
 import { useEffect, useRef, useState } from "react";
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -38,11 +34,7 @@ interface OrderModalProps {
 }
 
 export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
-<<<<<<< HEAD
-=======
   const formRef = useRef<HTMLDivElement>(null);
-
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<OrderSchema>({
@@ -61,8 +53,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
   });
 
   useEffect(() => {
-<<<<<<< HEAD
-=======
     if (product && isOpen) {
       // Reset scroll position when modal opens
       setTimeout(() => {
@@ -71,8 +61,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
         }
       }, 100);
     }
-
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
     if (product) {
       form.reset({
         firstName: "",
@@ -86,11 +74,7 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
         productName: product.name,
       });
     }
-<<<<<<< HEAD
-  }, [product, form]);
-=======
   }, [product, form, isOpen]);
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
 
   async function onSubmit(values: OrderSchema) {
     setIsSubmitting(true);
@@ -115,17 +99,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-<<<<<<< HEAD
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
-          <DialogTitle className="font-headline text-2xl text-primary">Order: {product?.name}</DialogTitle>
-          <DialogDescription>
-            Complete the form below to finalize your order. We'll be in touch soon!
-          </DialogDescription>
-        </DialogHeader>
-        <Form {...form}>
-          <form id="contactForm" action="https://formspree.io/f/xldgyywr" method="POST" className="space-y-4">
-=======
       <DialogContent ref={formRef} className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-white" dir="rtl">
         <DialogHeader className="text-right">
           <DialogTitle className="font-headline text-2xl text-teal-600 text-right">طلب: {product?.name}</DialogTitle>
@@ -142,23 +115,26 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
         </DialogHeader>
         <Form {...form}>
           <form id="contactForm" action="https://formspree.io/f/xldgyywr" method="POST" className="space-y-4" dir="rtl">
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
+            {/* Product Name Field (read-only) */}
+            <FormField
+              control={form.control}
+              name="productName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">اسم المنتج</FormLabel>
+                  <FormControl>
+                    <Input {...field} readOnly className="bg-gray-100 cursor-not-allowed border-gray-300 focus:border-teal-500 text-right" dir="rtl" />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">الاسم</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -167,7 +143,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -176,16 +151,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="Doe" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">النسب</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -194,7 +159,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -203,16 +167,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>Email</FormLabel>
-                     <FormControl>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="someone@gmail.com" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">Email</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -221,7 +175,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -230,16 +183,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="0678989828" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">رقم الهاتف</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -248,7 +191,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -257,16 +199,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 name="region"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>Region</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="fes-Meknes" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">المدينة</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -275,7 +207,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -284,16 +215,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-<<<<<<< HEAD
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="Fes" {...field} className="pl-10"/>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-=======
                     <FormLabel className="text-gray-700 font-medium">الجهة</FormLabel>
                     <FormControl>
                       <div className="relative">
@@ -302,7 +223,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                   </FormItem>
                 )}
               />
@@ -312,20 +232,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
               name="address"
               render={({ field }) => (
                 <FormItem>
-<<<<<<< HEAD
-                  <FormLabel>Address</FormLabel>
-                  <FormControl>
-                     <div className="relative">
-                        <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Textarea
-                          placeholder="fes-meknes,fes,i9amat 87"
-                          {...field}
-                          className="pl-10"
-                        />
-                      </div>
-                  </FormControl>
-                  <FormMessage />
-=======
                   <FormLabel className="text-gray-700 font-medium">العنوان المنزلي</FormLabel>
                   <FormControl>
                      <div className="relative">
@@ -338,7 +244,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                       </div>
                   </FormControl>
                   <FormMessage className="text-red-500" />
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                 </FormItem>
               )}
             />
@@ -347,35 +252,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
               name="message"
               render={({ field }) => (
                 <FormItem>
-<<<<<<< HEAD
-                  <FormLabel>Message (Optional)</FormLabel>
-                  <FormControl>
-                     <div className="relative">
-                        <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Textarea
-                          placeholder="Any special instructions or questions?"
-                          {...field}
-                          className="pl-10"
-                        />
-                      </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  "Confirm Order"
-=======
                   <FormLabel className="text-gray-700 font-medium text-right block">ملاحظات (اختياري)</FormLabel>
                   <FormControl>
                      <div className="relative">
@@ -407,7 +283,6 @@ export function OrderModal({ product, isOpen, onOpenChange }: OrderModalProps) {
                   </>
                 ) : (
                   "تأكيد الطلب"
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
                 )}
               </Button>
             </DialogFooter>

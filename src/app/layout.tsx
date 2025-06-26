@@ -19,11 +19,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
       </head>
-<<<<<<< HEAD
-      <body className="font-body antialiased">
-=======
       <body className="font-body antialiased bg-white text-gray-800">
->>>>>>> a630d1c (Update contact and footer links, center footer buttons, and change shop name to Proxy Shop)
         {children}
         <Toaster />
       </body>
