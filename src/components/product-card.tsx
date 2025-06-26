@@ -14,7 +14,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onOrderClick }: ProductCardProps) {
   return (
-    <GlassCard className="group flex flex-col overflow-hidden">
+    <GlassCard className="group flex flex-col overflow-hidden bg-white">
       <motion.div
         className="p-0"
         whileHover={{ scale: 1.02 }}
@@ -31,19 +31,21 @@ export function ProductCard({ product, onOrderClick }: ProductCardProps) {
           />
         </div>
       </motion.div>
-      <motion.div 
+      <motion.div
         className="flex flex-col flex-grow p-4 space-y-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
         <div className="p-0 flex-grow">
-          <h3 className="text-lg font-headline leading-tight text-gray-800">{product.name}</h3>
+          <h3 className="text-lg font-headline leading-tight text-[#333]">
+            {product.name}
+          </h3>
         </div>
         <div className="p-0 flex-col items-start space-y-4">
-          <p className="text-lg font-bold text-gray-800">{product.price}</p>
-          <Button 
-            className="w-full bg-red-600 hover:bg-red-700 text-white backdrop-blur-sm font-bold border-0 text-sm py-2 shadow-lg transition-colors duration-200"
+          <p className="text-lg font-bold text-[#666]">{product.price}</p>
+          <Button
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold border-0 text-sm py-2 shadow-lg transition-colors duration-200"
             onClick={() => onOrderClick(product)}
           >
             <ShoppingCart className="mr-2 h-4 w-4" /> اشتري الان
